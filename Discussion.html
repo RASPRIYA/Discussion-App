@@ -1,0 +1,143 @@
+<html>
+    <head>
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+
+    <style>
+        .heading{
+            background-color: #379F98;
+            padding:10px;
+            color:white;
+        }
+        .questions{
+            background-color:#CDD8D8;
+        }
+    </style>
+    <body>
+        <h3 class="heading">Discussion Portal</h3>
+        <div class="row">
+      <div class="col-sm-6">
+          <button class="btn btn-primary" id="newButton">New Question Form</button>
+          <input type="text" placeholder="seacrh Questions..."><br>
+          <br>
+          <div class="questions" id="questions"></div>
+
+
+      </div>
+      <div class="col-sm-6">
+          <div id="first">
+              <h2>Welcome to Discussion Portal!!!</h2>
+              Enter a subject and a Question to get started.<br>
+              <input type="text" placeholder="Subject" id="subject_input"><br><br>
+              <textarea rows="4" cols="50" placeholder="Question" id="question_input"></textarea><br><br>
+              <button type="button" class="btn btn-primary" id="quesbutton">Submit</button>
+          </div>
+          <div id="second" style="display:none">
+              <h3 style="color:grey">Question</h3>
+              <div id="ques"></div>
+              <br><br>
+              <h3 style="color:grey">Response</h3>
+              <h2>Add Response</h2>
+              <input type="text" placeholder="Enter Name" id="name"><br>
+              <br>
+            <textarea rows="4" cols="50" placeholder="Enter Comment" id="response"></textarea> <br><br>
+            <button class="btn btn-primary" id="ansbutton">Submit</button>    
+
+          </div>
+
+      </div>
+    </div>
+
+
+    </body>
+
+
+
+
+    <script>
+    //****************Making of linked list******************************
+   class Node { 
+    // constructor 
+    constructor(sub, que, arr) 
+    { 
+        this.sub = sub; 
+        this.que = que;
+        this.arr = arr;
+        this.next = null
+    } 
+    }
+
+    class LinkedList { 
+    constructor() 
+    { 
+        this.head = null; 
+        this.size = 0; 
+    } 
+  
+    
+    // add(element) 
+    add(data1, data2, arr) 
+    { 
+        // creates a new node 
+        var node = new Node(data1, data2, arr); 
+        // to store current node 
+        var current; 
+        // if list is Empty add the 
+        // element and make it head 
+        if (this.head == null) 
+            this.head = node; 
+        else { 
+            current = this.head; 
+            // iterate to the end of the 
+            // list 
+            while (current.next) { 
+                current = current.next; 
+            } 
+            // add node 
+            current.next = node; 
+        } 
+        this.size++; 
+    } 
+    
+}
+
+    var ll = new LinkedList();
+    
+    var submit1 = document.getElementById("quesbutton");
+    submit1.addEventListener("click", function(){
+        var subject=document.getElementById("subject_input").value;
+        var question=document.getElementById("question_input").value;
+        var array=new Array(100);
+
+       ll.add(subject, question, array);
+        //print questions in div
+       document.getElementById("questions").innerHTML+= "<div onclick="+clickDiv()+" id=\"hell\"><h2>"+subject+"</h2><p>"+question+"</p></div><br>";
+        
+    });
+
+    //*************************onclick div************************
+    function clickDiv(){
+        $(document).ready(function(){
+            $("#hell").click(function(){
+                $("#first").fadeOut();
+                $("#second").fadeIn();
+            });
+            });
+    }
+
+    
+
+        
+    </script>
+</html>
+
+
+
+
+
+
+
